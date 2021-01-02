@@ -1,0 +1,37 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AvaloniaTestApp.ViewModels;assembly=AvaloniaTestApp"
+		xmlns:models="clr-namespace:AvaloniaTestApp;assembly=AvaloniaTestApp"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaTestApp.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaTestApp">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="Reload" Command="{Binding ReloadCommand}"></MenuItem>
+		</Menu>
+
+		<TreeView DockPanel.Dock="Bottom" x:Name="NavigationTreeView" Grid.Row="0" Grid.Column="0" Items="{Binding TreeNodes}">
+			<TreeView.DataTemplates>
+				<TreeDataTemplate DataType="models:TreeNode" ItemsSource="{Binding Nodes}">
+					<StackPanel Orientation="Horizontal">
+						<StackPanel.ContextMenu>
+							<ContextMenu IsVisible="{Binding IsRootNode}">
+								<MenuItem Header="Remove" Command="{Binding RemoveRootNodeCommand}"></MenuItem>
+							</ContextMenu>
+						</StackPanel.ContextMenu>
+						<TextBlock Margin="5,0,0,0" Foreground="Black" Text="{Binding DisplayName}"/>
+						<TextBlock Margin="10,0,0,0" Foreground="Gray" Text="{Binding SizeDisplayValue, StringFormat='({0})'}" HorizontalAlignment="Right"/>
+					</StackPanel>
+				</TreeDataTemplate>
+			</TreeView.DataTemplates>
+		</TreeView>
+	</DockPanel>
+</Window>
