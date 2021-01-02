@@ -19,7 +19,7 @@
 		</Menu>
 
 		<TreeView DockPanel.Dock="Bottom" x:Name="NavigationTreeView" Grid.Row="0" Grid.Column="0" Items="{Binding TreeNodes}">
-			<TreeView.DataTemplates>
+			<TreeView.ItemTemplate>
 				<TreeDataTemplate DataType="models:TreeNode" ItemsSource="{Binding Nodes}">
 					<StackPanel Orientation="Horizontal">
 						<StackPanel.ContextMenu>
@@ -31,7 +31,7 @@
 						<TextBlock Margin="10,0,0,0" Foreground="Gray" Text="{Binding SizeDisplayValue, StringFormat='({0})'}" HorizontalAlignment="Right"/>
 					</StackPanel>
 				</TreeDataTemplate>
-			</TreeView.DataTemplates>
+			</TreeView.ItemTemplate>
 		</TreeView>
 	</DockPanel>
 </Window>
